@@ -48,10 +48,12 @@ class Post(object):
         text = fp.read()
         fp.close()
 
+        md = markdown2.Markdown(extras=["tables"])
+
         if link is None:
-            return markdown2.Markdown().convert(text)
+            return md.convert(text)
         else:
-            return self._build_link(markdown2.Markdown().convert(text))
+            return self._build_link(md.convert(text))
 
 
 class Page(object):
